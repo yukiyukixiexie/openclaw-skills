@@ -1,0 +1,11 @@
+{
+  "name": "openclaw-skills",
+  "version": "1.0.0",
+  "description": "OpenClaw 投资分析 Skills",
+  "skills": [
+    {
+      "name": "earnings-decoder",
+      "source": "./plugins/earnings-decoder"
+    }
+  ]
+}
