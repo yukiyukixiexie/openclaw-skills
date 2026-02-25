@@ -6,6 +6,10 @@
     {
       "name": "earnings-decoder",
       "source": "./plugins/earnings-decoder"
+    },
+    {
+      "name": "hk-momentum-tracker",
+      "source": "./plugins/hk-momentum-tracker"
     }
   ]
 }
