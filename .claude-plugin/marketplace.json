@@ -2,14 +2,21 @@
   "name": "openclaw-skills",
   "version": "1.0.0",
   "description": "OpenClaw 投资分析 Skills",
-  "skills": [
+  "owner": {
+    "name": "yukiyukixiexie"
+  },
+  "plugins": [
     {
       "name": "earnings-decoder",
-      "source": "./plugins/earnings-decoder"
+      "source": "./plugins/earnings-decoder",
+      "description": "买方视角财报解读 - 从价格反推假设，用数据验证，输出仓位决策",
+      "version": "1.0.0"
     },
     {
       "name": "hk-momentum-tracker",
-      "source": "./plugins/hk-momentum-tracker"
+      "source": "./plugins/hk-momentum-tracker",
+      "description": "港股 AI 概念股资金阶段追踪与事件驱动交易策略",
+      "version": "1.0.0"
     }
   ]
 }

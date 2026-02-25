@@ -1,0 +1,5 @@
+{
+  "name": "earnings-decoder",
+  "version": "1.0.0",
+  "description": "买方视角财报解读 - 从价格反推假设，用数据验证，输出仓位决策"
+}
