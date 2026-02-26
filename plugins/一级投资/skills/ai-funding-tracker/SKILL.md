@@ -33,11 +33,11 @@ user-invocable: true
 
 | 来源 | RSS URL | 覆盖范围 | 数据质量 |
 |------|---------|----------|----------|
-| TechCrunch | `https://techcrunch.com/feed/` | 美国为主，实时 | ⭐⭐⭐ |
-| Crunchbase News | `https://news.crunchbase.com/feed/` | 全球，融资汇总 | ⭐⭐⭐ |
-| VentureBeat | `https://feeds.feedburner.com/venturebeat/SZYF` | AI垂直，B轮为主 | ⭐⭐⭐ |
-| Sifted | `https://sifted.eu/feed` | 欧洲市场 | ⭐⭐⭐ |
-| Hacker News | `https://news.ycombinator.com/` | YC公司为主 | ⭐⭐ |
+| TechCrunch | `https://techcrunch.com/feed/` | 美国为主，实时 | 高 |
+| Crunchbase News | `https://news.crunchbase.com/feed/` | 全球，融资汇总 | 高 |
+| VentureBeat | `https://feeds.feedburner.com/venturebeat/SZYF` | AI垂直，B轮为主 | 高 |
+| Sifted | `https://sifted.eu/feed` | 欧洲市场 | 高 |
+| Hacker News | `https://news.ycombinator.com/` | YC公司为主 | 中 |
 
 ### 二、执行顺序
 
@@ -361,10 +361,10 @@ user-invocable: true
 
 | 热度等级 | 判断标准 |
 |----------|----------|
-| 🔥🔥🔥 热门 | 本周3笔以上，或单笔$100M+ |
-| 🔥🔥 活跃 | 本周1-2笔，A/B轮为主 |
-| 🔥 萌芽 | 本周有Seed轮，或首次出现 |
-| ❄️ 冷淡 | 本周无融资，或仅小额 |
+| [热] 热门 | 本周3笔以上，或单笔$100M+ |
+| [中] 活跃 | 本周1-2笔，A/B轮为主 |
+| [低] 萌芽 | 本周有Seed轮，或首次出现 |
+| [冷] 冷淡 | 本周无融资，或仅小额 |
 
 ---
 
