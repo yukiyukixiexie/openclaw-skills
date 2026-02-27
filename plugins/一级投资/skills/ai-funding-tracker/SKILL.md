@@ -39,7 +39,49 @@ user-invocable: true
 | Sifted | `https://sifted.eu/feed` | 欧洲市场 | 高 |
 | Hacker News | `https://news.ycombinator.com/` | YC公司为主 | 中 |
 
-### 二、执行顺序
+### 二、YC数据源（种子轮信号 - 重要）
+
+YC是种子轮最重要的风向标，YC选择的方向往往代表市场共识的早期信号。
+
+| 来源 | URL | 用途 | 数据质量 |
+|------|-----|------|----------|
+| HN Launches | `https://news.ycombinator.com/launches` | YC新公司发布 | 高 |
+| TechCrunch YC | `https://techcrunch.com/tag/y-combinator/feed/` | YC公司融资报道 | 高 |
+| YC Blog | `https://www.ycombinator.com/blog` | 官方公告/Demo Day | 高 |
+
+**YC数据抓取流程：**
+
+```
+5. WebFetch: https://news.ycombinator.com/launches
+   提取: Launch YC标签的公司，记录公司名、批次(如W26/S25)、产品描述
+   重点: 识别AI Agent、AI Coding、Fintech相关公司
+
+6. WebFetch: https://techcrunch.com/tag/y-combinator/feed/
+   提取: YC公司的后续融资新闻、Demo Day报道
+```
+
+**YC信号解读框架：**
+
+| YC批次公司集中的方向 | 信号含义 |
+|---------------------|----------|
+| 某赛道出现3+家公司 | YC在押注该方向，关注后续A轮 |
+| 首次出现新品类 | 早期信号，值得深入研究 |
+| 金融/支付类公司 | Fintech新机会，参考历史(Stripe/Plaid/Ramp) |
+| Agent基础设施类 | Picks & Shovels机会 |
+
+**历史YC Fintech成功案例（估值参考）：**
+
+| 公司 | 批次 | 领域 | 当前估值 |
+|------|------|------|----------|
+| Stripe | S2009 | 支付 | $50B+ |
+| Coinbase | S2012 | 加密交易 | 上市 |
+| Plaid | W2013 | 金融数据 | $8B |
+| Brex | W2017 | 企业信用卡 | $12B |
+| Ramp | S2019 | 企业支出 | $8B |
+| Mercury | S2019 | 创业银行 | $1.6B |
+| Deel | W2019 | 全球薪资 | $12B |
+
+### 三、执行顺序
 
 **必须按顺序执行以下WebFetch调用：**
 
@@ -55,9 +97,15 @@ user-invocable: true
 
 4. WebFetch: https://sifted.eu/feed
    提取: 欧洲AI融资（补充视角）
+
+5. WebFetch: https://news.ycombinator.com/launches
+   提取: YC新公司（种子轮信号）
+
+6. WebFetch: https://techcrunch.com/tag/y-combinator/feed/
+   提取: YC公司融资报道
 ```
 
-### 三、不可用数据源（已测试）
+### 四、不可用数据源（已测试）
 
 以下数据源有付费墙或访问限制，不要尝试：
 - The Information (403)
@@ -729,7 +777,29 @@ A/B轮: [X]笔 ($[X]M) | 重点关注
 
 ————————————————
 
-数据来源: TechCrunch, Crunchbase, VentureBeat, Sifted
+[YC种子轮信号]
+
+本周YC Launch公司: [X]家
+AI相关: [X]家
+
+重点公司:
+• [公司名] (YC [批次]) - [一句话描述]
+  赛道: [AI Agent/AI Coding/Fintech/其他]
+  信号: [为什么值得关注]
+
+• [公司名] (YC [批次]) - [一句话描述]
+  赛道: [分类]
+  信号: [为什么值得关注]
+
+YC方向解读:
+[YC本周/本月选择的公司集中在哪些方向？这说明什么？]
+
+值得跟踪的YC公司:
+[列出3-5家值得关注后续A轮的YC公司]
+
+————————————————
+
+数据来源: TechCrunch, Crunchbase, VentureBeat, Sifted, YC Launches
 ```
 
 ### 月报格式
@@ -798,7 +868,27 @@ AI融资月报 | [YYYY年M月]
 
 ————————————————
 
-数据来源: TechCrunch, Crunchbase, VentureBeat, Sifted
+[YC种子轮月度信号]
+
+本月YC Launch公司: [X]家
+AI相关占比: [X]%
+
+赛道分布:
+- AI Agent: [X]家
+- AI Coding: [X]家
+- Fintech: [X]家
+- 其他: [X]家
+
+YC押注方向解读:
+[YC本月选择说明什么？与上月相比有何变化？]
+
+值得关注的YC毕业公司后续融资:
+• [公司] (YC [批次]) - [融资情况]
+• [公司] (YC [批次]) - [融资情况]
+
+————————————————
+
+数据来源: TechCrunch, Crunchbase, VentureBeat, Sifted, YC Launches
 ```
 
 ---
