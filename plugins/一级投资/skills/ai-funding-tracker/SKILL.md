@@ -846,3 +846,23 @@ AI融资月报 | [YYYY年M月]
 - 帮助VC快速了解市场动态
 - 识别共识形成中的方向
 - 发现潜在投资机会
+
+---
+
+## 关联Skill
+
+### yc-startups (YC创业公司追踪)
+
+**用途**: 追踪YC各批次创业公司，作为一级市场创意来源
+
+**联动方式**:
+1. 使用 `yc-startups` 追踪YC Demo Day新公司
+2. 3-6个月后用本skill追踪其后续融资
+3. 形成从孵化到成长的完整一级市场视图
+
+**调用**: `/yc-startups [batch|fintech|all]`
+
+**重点关注**:
+- YC金融科技公司（Fintech/Insurance/Crypto/DeFi）
+- YC选择的方向 = 市场共识信号
+- 历史YC Fintech: Stripe, Coinbase, Brex, Plaid, Ramp等
