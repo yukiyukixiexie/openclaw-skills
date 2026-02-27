@@ -1,0 +1,26 @@
+# OpenClaw Skills 依赖
+
+# 核心依赖
+pandas>=1.5.0
+numpy>=1.20.0
+requests>=2.28.0
+
+# 美股数据
+yfinance>=0.2.0           # Yahoo Finance (免费)
+alpaca-py>=0.10.0         # Alpaca 交易 + 数据 (免费)
+
+# A股/港股数据
+akshare>=1.10.0           # A股、港股数据 (免费)
+
+# 加密货币
+ccxt>=4.0.0               # 交易所数据 (免费)
+
+# 绩效分析
+quantstats>=0.0.60        # 专业绩效报告
+
+# 技术指标 (可选)
+pandas-ta>=0.3.0          # 技术指标计算
+# ta-lib                  # 需要编译，可选
+
+# 回测框架 (可选)
+# vectorbt>=0.24.0        # 向量化回测 (需要较多依赖)

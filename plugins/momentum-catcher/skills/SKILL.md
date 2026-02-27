@@ -4,8 +4,8 @@
 
 ```yaml
 name: momentum-catcher
-description: 港股资金动量捕捉分析框架，用于识别事件驱动机会、确认资金共识、捕捉动量加速期
-version: 1.0.0
+description: 美股/港股资金动量捕捉分析框架，用于识别事件驱动机会、确认资金共识、捕捉动量加速期
+version: 2.0.0
 author: OpenClaw
 triggers:
   - /momentum-catcher
@@ -13,13 +13,50 @@ triggers:
   - /mc
 arguments:
   - name: ticker
-    description: 港股代码（如 02513, 9618）
+    description: 股票代码（美股: AAPL, NVDA | 港股: 02513, 0700.HK）
     required: true
+  - name: market
+    description: 市场类型 (auto/us/hk)
+    required: false
+    default: auto
   - name: action
-    description: 分析类型 (scan/analyze/signal/backtest)
+    description: 分析类型 (analyze/backtest/trade)
     required: false
     default: analyze
 ```
+
+## v2.0 新增功能
+
+### 美股支持
+- **Alpaca 实时数据**：无延迟美股行情
+- **Finnhub 集成**：Earnings Surprise、分析师目标价、公司新闻
+- **Alpaca 交易**：支持纸盘/实盘交易执行
+
+### 绩效分析
+- **quantstats 集成**：专业绩效报告（Sharpe、Sortino、Max Drawdown）
+- **HTML 报告生成**：一键生成可视化报告
+
+### 数据源升级
+- **统一数据接口**：自动选择最佳数据源
+- **多源备份**：Alpaca → yfinance → 新浪/腾讯
+
+### 快速开始
+
+```bash
+# 美股分析
+python momentum_v2.py --ticker NVDA --market us
+
+# 港股分析
+python momentum_v2.py --ticker 02513.HK --market hk
+
+# 带绩效回测
+python momentum_v2.py --ticker AAPL --backtest
+
+# 执行交易（美股 Alpaca）
+python momentum_v2.py --ticker AAPL --trade --capital 10000
+```
+
+---
 
 ---
 
