@@ -197,12 +197,11 @@ TRUSTED_SOURCES = [
 # 排除的噪音来源
 BLOCKED_SOURCES = [
     'youtube.com', 'bannedbook.org', 'epochtimes.com', 'ntdtv.com',
-    'rfa.org', 'voachinese.com', 'facebook.com', 'twitter.com',
-    'dw.com', 'bbc.com', 'wikipedia.org'  # 百科和国际媒体政治新闻
+    'rfa.org', 'voachinese.com', 'facebook.com', 'twitter.com'
 ]
 
 # 政策搜索时排除的关键词（与投资无关的政治新闻）
-POLITICAL_NOISE_KEYWORDS = ['军事', '解放军', '张又侠', '清洗', '偏执狂', '腐败']
+POLITICAL_NOISE_KEYWORDS = ['解放军', '张又侠', '清洗', '偏执狂', '腐败', '军队']
 
 
 def brave_search(query: str, count: int = 10, freshness: str = None, filter_sources: bool = True) -> List[Dict]:
@@ -295,15 +294,20 @@ class PolicyMonitor(EventMonitor):
             company_name = self.company_info.get('name', '')
             founders = self.company_info.get('founders', [])
 
-            # 搜索领导人+公司
-            query = f"习近平 {company_name}"
-            results = brave_search(query, count=5, freshness="pm")
-            events.extend(self._parse_results(results, 'leader_company'))
+            # 搜索领导人+公司+动作词
+            queries = [
+                f"习近平 {company_name} 考察",
+                f"习近平 {company_name} 视察",
+                f"总书记 {company_name}",
+            ]
+            for query in queries:
+                results = brave_search(query, count=5, freshness="pm")
+                events.extend(self._parse_results(results, 'leader_company'))
 
             # 搜索领导人+创始人
             for founder in founders:
-                query = f"习近平 {founder}"
-                results = brave_search(query, count=5, freshness="pm")
+                query = f"习近平 {founder} 座谈"
+                results = brave_search(query, count=3, freshness="pm")
                 events.extend(self._parse_results(results, 'leader_founder'))
 
         # 2. 主题政策相关
