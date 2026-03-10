@@ -14,23 +14,73 @@ user-invocable: true
 **在进行任何分析之前，必须先运行数据抓取脚本获取真实行情数据：**
 
 ```bash
-python3 {SKILL_DIR}/fetch_data.py <股票代码>
+# 完整分析（实时 + 历史 + 信号）
+python3 {SKILL_DIR}/fetch_momentum.py <股票代码>
+
+# 仅实时数据（快速查看）
+python3 {SKILL_DIR}/fetch_momentum.py <股票代码> --rt
+
+# 批量扫描 AI 概念股
+python3 {SKILL_DIR}/fetch_momentum.py --scan
 ```
 
 **示例：**
 ```bash
-python3 {SKILL_DIR}/fetch_data.py 00020
+python3 {SKILL_DIR}/fetch_momentum.py 00020
 ```
 
+**数据源说明：**
+- 实时数据：腾讯财经（~50ms）+ 东方财富（流通市值）
+- 历史K线：腾讯（~100ms，稳定可靠）
+- 换手率：通过流通市值实时计算
+
 脚本会返回 JSON 格式的数据，包含：
-- 上市以来所有历史数据统计
+- 实时行情（价格、涨跌幅、成交额、换手率、量比）
+- 近 120 个交易日历史数据
 - 成交额/换手率分位数
 - 阶段信号计算结果（加速/分歧/破位）
-- 资金强度评分
+- 资金强度评分（0-100）
+- 当前阶段判断和操作建议
 - 最近 20 个交易日详细数据
 - 成交额 Top 10 交易日
 
 **获取数据后，基于返回的 JSON 数据进行后续分析。禁止编造数据。**
+
+---
+
+## Step 0.5：获取IPO招股书（新股分析）
+
+**对于新上市股票，需要下载招股书分析股本结构和资金面：**
+
+```bash
+# 搜索并下载招股书
+python3 {SKILL_DIR}/fetch_ipo_prospectus.py <股票代码>
+
+# 仅搜索，不下载
+python3 {SKILL_DIR}/fetch_ipo_prospectus.py <股票代码> --search
+
+# 指定IPO日期搜索
+python3 {SKILL_DIR}/fetch_ipo_prospectus.py <股票代码> --ipo-date 2026-01-08
+
+# 直接从URL下载
+python3 {SKILL_DIR}/fetch_ipo_prospectus.py --url "https://xxx.pdf" --code <股票代码>
+
+# 分析已下载的招股书
+python3 {SKILL_DIR}/fetch_ipo_prospectus.py --analyze ~/Downloads/prospectus.pdf
+
+# 搜索近期IPO
+python3 {SKILL_DIR}/fetch_ipo_prospectus.py --recent
+```
+
+**招股书关键数据提取：**
+- 发行价区间
+- 发售股数
+- 募资规模
+- 基石投资者
+- 股本结构（总股本、流通股）
+- 锁定期安排
+
+**数据源：港交所披露易 (HKEXnews)**
 
 ---
 
